@@ -30,7 +30,19 @@ Be sure that your tmp dir is writable for the current user:
 sudo chown -R $USER:$GROUPS ~/tmp
 ```
 
-If that fails, we'd recommend either:
+Finally, if you are on Linux (particularly RHEL, CentOS, or Amazon) and SELinux is installed, it may be causing issues even if your permissions and ownership are correctly installed. If you do not know what SELinux is, or you believe you do not need it, you may wish to disable it. Of course, SELinux is a valuable security feature, but it requires advanced skills to administer effectively. If you are unable to learn how to use SELinu well, due to constraints of time, you may need to disable it.
+
+To disable SELinux temporarily:
+
+``` bash
+sudo setenforce Permissive
+```
+
+Now check again and see if you get the same error. If you still get issues after disabling SELinux, it is probably not SELinux-related, so you should re-enable SELinux.
+
+For more information, please consult [this guide on how to disable SELinux permanently](http://www.cyberciti.biz/faq/howto-turn-off-selinux/) or [this guide on how to create an exception in SELinux,](https://wiki.gentoo.org/wiki/SELinux/Tutorials/Creating_your_own_policy_module_file) if you are confident in using SELinux. (If you want to learn SELinux in depth, [here is a shorter book](https://www.packtpub.com/networking-and-servers/selinux-system-administration) and [here is a longer book](http://www.amazon.com/SELinux-Example-Using-Security-Enhanced/dp/0131963694) on the topic. Both are excellent but difficult reading.) If you have a mandate to include SELinux (due to compliance requirements or otherwise), it is probably time to consider hiring a dedicated sysadmin or DevOps to manage your server.
+
+If all else fails, we'd recommend either:
 
 - Re-Installing Node.js with Bevry's [recommended installation instructions](http://bevry.me/node/install)
 - Asking about it on the [Node.js IRC Chat Room](http://webchat.freenode.net/?channels=node.js) (`#node.js` on freenode)
